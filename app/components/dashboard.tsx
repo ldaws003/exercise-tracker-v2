@@ -2,6 +2,7 @@ import { Line } from 'react-chartjs-2';
 import { useState, useEffect, Suspense } from 'react';
 import CaloriesChart from './ui/CaloriesChart';
 import Loading from './ui/Loading';
+import UploadActivity from './ui/UploadActivity';
 
 
 // TODO: add pagination to data
@@ -41,6 +42,7 @@ export default function Dashboard(){
         </Suspense>
 
         {/*TODO add form to add an activity*/}
+        <UploadActivity />
 
     </div>
     )
