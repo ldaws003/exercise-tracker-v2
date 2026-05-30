@@ -35,6 +35,12 @@ export default function UploadActivity(){
         const calories = target.calories.value;
         const date = target.date.value;
 
+        // TODO: add better form validation
+        if(!ValidateForm(formData)){
+            console.log("Error with Form");
+            return;
+        }
+
         // TODO: use API call to upload data
         console.log(target);
     };
@@ -46,8 +52,19 @@ export default function UploadActivity(){
         }));
     };
 
-    // TODO: add form validation
+    // TODO: add proper form validation (warning for each input, unique error message for each)
     function ValidateForm(formData: ActivityForm): boolean {
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const cleanTargetDate = new Date(formData.date);
+        cleanTargetDate.setHours(0, 0, 0, 0);
+
+        if(!ValidActivities.includes(formData.activity)) return false;
+        if(formData.duration <= 0 || Number.isNaN(formData.duration)) return false;
+        if(formData.calories <= 0 || Number.isNaN(formData.calories)) return false;
+        if(!(cleanTargetDate <= today)) return false;
                 
         return true;
     }
