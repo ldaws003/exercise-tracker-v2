@@ -46,9 +46,30 @@ export default function UploadActivity(){
     };
 
     function onActivityChange(event: React.ChangeEvent<HTMLSelectElement>){
-        setFormData( (prevData: ActivityForm) => ({
+        setFormData( ( prevData: ActivityForm ) => ({
             ...prevData,
             activity: event.target.value
+        }));
+    };
+
+    function onChangeDuration(event: React.ChangeEvent<HTMLInputElement>){
+        setFormData( ( prevData: ActivityForm ) => ({
+            ...prevData,
+            duration: Number(event.target.value)
+        }));
+    };
+
+    function onChangeCalories(event: React.ChangeEvent<HTMLInputElement>){
+        setFormData( ( prevData: ActivityForm ) => ({
+            ...prevData,
+            calories: Number(event.target.value)
+        }))
+    }
+
+    function onDateChange(event: React.ChangeEvent<HTMLInputElement>){
+        setFormData( ( prevData: ActivityForm ) => ({
+            ...prevData,
+            date: new Date(event.target.value)
         }));
     };
 
@@ -81,13 +102,13 @@ export default function UploadActivity(){
                 </select>
 
                 <label htmlFor="DurationInput">Duration: </label>
-                <input id="DurationInput" name="duration" type="number" />
+                <input id="DurationInput" name="duration" type="number" onChange={onChangeDuration}/>
 
                 <label htmlFor="CaloriesInput">Calories: </label>
-                <input id="CaloriesInput" name="Calories" type="number" />
+                <input id="CaloriesInput" name="Calories" type="number" onChange={onChangeCalories}/>
 
                 <label htmlFor="DateInput">Date: </label>
-                <input id="DateInput" name="date" type="date" />
+                <input id="DateInput" name="date" type="date" onChange={onDateChange} />
 
                 <input type="submit" value="Submit Activity" />
             </form>
