@@ -33,7 +33,7 @@ export default async function NavBar(){
                 {
                     session?.user ? (
                         <div>
-
+                          <SignOut />
                         </div>
                     ) : (
                     <Link href="/api/auth/signin">
