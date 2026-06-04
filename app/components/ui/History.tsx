@@ -8,19 +8,22 @@ export default function History(){
 
      let dummy_activity_data: any = {
         data: [
-            {activity: "running", duration: "300s", date: "2026-05-23", calories: "300"},
-            {activity: "running", duration: "300s", date: "2026-05-26", calories: "200"},
-            {activity: "running", duration: "300s", date: "2026-05-28", calories: "10"},
-            {activity: "running", duration: "300s", date: "2026-05-30", calories: "327"},
-            {activity: "weights", duration: "200s", date: "2026-05-24", calories: "500"},
-            {activity: "biking", duration: "700s", date: "2026-05-27", calories: "500"},
-            {activity: "biking", duration: "300s", date: "2026-05-29", calories: "56"},
+            {id: "1", activity: "running", duration: "300s", date: "2026-05-23", calories: "300"},
+            {id: "2", activity: "running", duration: "300s", date: "2026-05-26", calories: "200"},
+            {id: "3", activity: "running", duration: "300s", date: "2026-05-28", calories: "10"},
+            {id: "4", activity: "running", duration: "300s", date: "2026-05-30", calories: "327"},
+            {id: "5", activity: "weights", duration: "200s", date: "2026-05-24", calories: "500"},
+            {id: "6", activity: "biking", duration: "700s", date: "2026-05-27", calories: "500"},
+            {id: "7", activity: "biking", duration: "300s", date: "2026-05-29", calories: "56"},
         ]
     };
 
-    //TODO: sort by date
     function SortByDate(history_data: any[]){
         return history_data.toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    }
+
+    function DeleteActivity(event: any){
+        // TODO: delete the selected entry 
     }
 
     function Filter(history_data: any[], property: any, condition: any){
