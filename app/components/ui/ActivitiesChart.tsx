@@ -24,7 +24,7 @@ ChartJS.register(
 );
 
 export default function ActivitiesChart(){
-    const [activityData, setActivityData] = useState<any>({});
+    const [activityData, setActivityData] = useState<any>({labels: null, datasets: []});
 
     let dummy_activity_data: any = {
         running_data: [

@@ -1,10 +1,32 @@
 "use client"
 
 import { useEffect, useState } from "react";
+
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
 import { Line } from 'react-chartjs-2';
 
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
 export default function CaloriesChart(){
-    const [calData, setCalData] = useState({labels: [], datasets: []});
+    const [calData, setCalData] = useState({labels: null, datasets: []});
 
     // Dummy data, remove and replace with actual api call once set up
     const dummy_cal_data: any = {
