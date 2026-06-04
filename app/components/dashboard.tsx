@@ -1,4 +1,5 @@
-import { useState, useEffect, Suspense } from 'react';
+
+import { Suspense } from 'react';
 import CaloriesChart from './ui/CaloriesChart';
 import ActivitiesChart from './ui/ActivitiesChart';
 import Loading from './ui/Loading';
