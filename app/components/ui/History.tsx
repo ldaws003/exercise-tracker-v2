@@ -64,14 +64,15 @@ export default function History(){
             {
                 data.map((ele: any, i: number) => {
                     return (
-                        <div key={`history_{i}`}>
+                        <div key={`{ele.id}`} id={`{ele.id}`}>
                             <p>{ele.activity}</p>
                             <p>{ele.date}</p>
                             <p>{ele.duration}</p>
                             <p>{ele.calories}</p>
+                            <button onClick={DeleteActivity}></button>
                         </div>
                     )
-                });
+                })
             }
         </div>
     )
