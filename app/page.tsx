@@ -1,15 +1,28 @@
-import Image from "next/image";
-import { SessionProvider } from "next-auth/react"
-import HomePage from "./home/page";
+"use client"
+
+import { useSession, signIn, signOut } from "next-auth/react"
+import Dashboard from "./components/dashboard";
+import Welcome from "./components/welcome";
 
 // TODO? make sign in form
 // TODO: make db to save exercise data
 // TODO: decide which sql to use to fetch and load data
 
-export default function Home() {
-  return (
-    <SessionProvider>
-      <HomePage/>
-    </SessionProvider>
-  );
+export default function HomePage(){
+    const { data: session } = useSession();
+    if( session ){
+        return(
+            <>
+              <Dashboard />
+            </>
+        )
+    }
+    else {
+        return (
+            <>
+                <Welcome />
+            </>
+        )
+    }
+
 }
