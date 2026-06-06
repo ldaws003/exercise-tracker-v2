@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export default function Welcome(){
     return (
-        <div className="w-full h-full flex flex-nowrap sm:flex-wrap items-start justify-around">
+        <div className="w-full h-full self-center flex flex-nowrap sm:flex-wrap items-start justify-around">
             <div className="w-lg">
                 <h1 className="text-5xl my-4">Exercise Tracker V2</h1>
                 <p className="my-4">This is a personal project showcasing Chart.js, a SQL database, and OAuth. 
