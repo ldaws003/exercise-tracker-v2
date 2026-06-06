@@ -10,7 +10,7 @@ import UploadActivity from './ui/UploadActivity';
 export default function Dashboard(){
     
     return (
-    <div>
+    <div className="bg-slate-100 text-black">
 
         <Suspense fallback={<Loading/>}>
             <CaloriesChart />
