@@ -1,11 +1,23 @@
+import Image from "next/image"
+
 export default function Welcome(){
     return (
-        <div>
-            <h2>Hi Welcome to the Exercise Tracker V2</h2>
-            <p>This is a personal project showcasing Chart.js, a SQL database, and OAuth. 
-                Sign in with your google account and be taken to a dashboard where you can keep track of your
-                exercises and the amount of calories you burned.</p>
-            <p>Sign in using the link on the top right corner</p>
+        <div className="w-full h-full flex flex-nowrap sm:flex-wrap items-start justify-around">
+            <div className="w-lg">
+                <h1 className="text-5xl my-4">Exercise Tracker V2</h1>
+                <p className="my-4">This is a personal project showcasing Chart.js, a SQL database, and OAuth. 
+                    Sign in with your google account and be taken to a dashboard where you can keep track of your
+                    exercises and the amount of calories you burned.</p>
+                <p>Sign in using the link on the top right corner</p>                
+            </div>
+            <Image 
+            src="/anastase-maragos-fG0p4Qh_aWI-unsplash.jpg"
+            alt="Man working out"
+            width={500}
+            height={500}
+            loading="lazy"
+            className="inline-block mx-1 align-middle"
+            />
         </div>
     )
 }
