@@ -1,6 +1,6 @@
 export default function Contact(){
     return (
-        <div>
+        <div className="bg-slate-100 text-black">
             <h1>Contact Us</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis faucibus aliquam viverra. Cras eget ex nec 
                 ligula porttitor tincidunt. Duis rhoncus diam imperdiet odio ullamcorper, eu imperdiet libero scelerisque. 
