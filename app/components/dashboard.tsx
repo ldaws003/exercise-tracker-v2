@@ -10,15 +10,12 @@ import UploadActivity from './ui/UploadActivity';
 export default function Dashboard(){
     
     return (
-    <div className="bg-slate-100 text-black">
-
-        <Suspense fallback={<Loading/>}>
+    <div className="bg-slate-100 text-black flex flex-nowrap sm:flex-wrap justify-around w-full">
+        
+        <div className="self-center flex flex-nowrap sm:flex-wrap items-center justify-around w-full">
             <CaloriesChart />
-        </Suspense>
-
-        <Suspense fallback={<Loading/>}>
             <ActivitiesChart />
-        </Suspense>
+        </div>
 
         {/*TODO add form to add an activity*/}
         <UploadActivity />

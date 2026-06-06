@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react";
+import Loading from "./Loading";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -24,7 +25,8 @@ ChartJS.register(
 );
 
 export default function ActivitiesChart(){
-    const [activityData, setActivityData] = useState<any>({labels: null, datasets: []});
+    const [activityData, setActivityData] = useState<any>({labels: "", datasets: []});
+    const [loaded, setLoaded] = useState<any>(false);
 
     let dummy_activity_data: any = {
         running_data: [
@@ -48,7 +50,7 @@ export default function ActivitiesChart(){
         "biking"
     ];
 
-    const options = {
+    const options: any = {
         responsive: true,
         plugins: {
             legend: {
@@ -57,6 +59,12 @@ export default function ActivitiesChart(){
             title: {
                 display: true,
                 text: 'Exercise Activities',
+                color: "#000000",
+                font: {
+                    size: 24,          
+                    weight: 'bold',
+                    family: "sans-serif, 'Arial'"
+                }
             },
         },
     };
@@ -71,39 +79,43 @@ export default function ActivitiesChart(){
             // waits for 1000ms
             await sleep(1000);
 
-            return dummy_activity_data;
+            let tempData: any = {
+                labels: ActivityCategories,
+                datasets: [
+                    {
+                        label: "Calories Burned",
+                        data: [
+                            dummy_activity_data.running_data.reduce( (acc: number, currObject: any) => {
+                                return acc + Number(currObject.calories)
+                            }, 0),
+                            dummy_activity_data.weights_data.reduce( (acc: number, currObject: any) => {
+                                return acc + Number(currObject.calories)
+                            }, 0),
+                            dummy_activity_data.biking_data.reduce( (acc: number, currObject: any) => {
+                                return acc + Number(currObject.calories)
+                            }, 0)
+                        ],
+                        backgroundColor: 'rgb(255, 99, 132)'
+                    }
+                ]
+            };
+
+            setActivityData(tempData);
+            setLoaded(true);
         };
 
-        const result: any = fetchData().catch(console.error);
-
-
-        // show time and show calories burned
-        
-        let tempData: any = {
-            labels: result.dates,
-            datasets: [
-                {
-                    label: "Running",
-                    data: result.running_data
-                },
-                {
-                    label: "Weights",
-                    data: result.weights_data
-                },
-                {
-                    label: "Biking",
-                    data: result.biking_data
-                },
-            ]
-        };
-
-        setActivityData(tempData);
+        fetchData();
     }, []);
 
     
     return (
-        <div>
-            <Bar options={options} data={activityData} />
+        <div className="w-1/3">
+            {
+                loaded ?
+                <Bar options={options} data={activityData} /> 
+                :
+                <Loading />
+            }
         </div>
     )
 }
