@@ -15,12 +15,13 @@ import {
 import { Button } from "@/components/ui/button";
 
 //TODO: add deletion
-//TODO: add pagination
+//TODO: add pagination, don't slice in client, assume api will handle it, write logic rn
 export default function History(){
     const router = useRouter();
     const [data, setData] = useState<any[]>([]);
     const [loaded, isLoaded] = useState(false);
-    const [showData, setShowData] = useState([]);
+    const [showData, setShowData] = useState<any[]>([]);
+    const [page, setPage] = useState(1);
     const { data: session, status } = useSession();
 
     
@@ -45,6 +46,19 @@ export default function History(){
     function SortByDate(history_data: any[]){
         return history_data.toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     }
+
+    // TODO: delete after api + backend is set up
+    /////////////////////////////////////////////////////////
+    function pageData(history_data: any[], page: number, entry_per_page: number){
+        const start = (page - 1) * entry_per_page;
+        const end = start + entry_per_page;
+        return history_data.slice(start, end)
+    }
+
+    useEffect(() => {
+        setShowData(pageData(data, page, 3));
+    }, [page]);
+    ////////////////////////////////////////////////////////////////////
 
     function DeleteActivity(event: any){
         // TODO: delete the selected entry
@@ -87,7 +101,7 @@ export default function History(){
             <h1 className="text-center">Workout History</h1>
             {
                 loaded ? 
-                data.map((ele: any, i: number) => {
+                showData.map((ele: any, i: number) => {
                     return (
                         <Card className="w-1/3 my-1">
                             <CardHeader>
