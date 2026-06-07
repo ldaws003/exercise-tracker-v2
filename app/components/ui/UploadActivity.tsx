@@ -1,9 +1,28 @@
 "use client"
 
 import { useEffect, useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { Button } from "@/components/ui/button"
+import { Field, FieldDescription, FieldLabel, FieldError } from "@/components/ui/field";
 
 
-//TODO: set the date to international standard
+// TODO: convert form duration from minutes to seconds when sending to backend
 
 interface ActivityForm {
     activity: string,
@@ -15,7 +34,7 @@ interface ActivityForm {
 export default function UploadActivity(){
     const [formData, setFormData] = useState<ActivityForm>({
         activity: "",
-        duration: 0,
+        duration: 0, // in minutes
         calories: 0,
         date: new Date()
     });
@@ -29,13 +48,8 @@ export default function UploadActivity(){
             activity: { value: string },
             duration: { value: number },
             calories: { value: number },
-            date: { value: Date }
+            date: { value: string }
         }
-
-        const activity = target.activity.value;
-        const duration = target.duration.value;
-        const calories = target.calories.value;
-        const date = target.date.value;
 
         // TODO: add better form validation
         if(!ValidateForm(formData)){
@@ -44,13 +58,19 @@ export default function UploadActivity(){
         }
 
         // TODO: use API call to upload data
-        console.log(target);
+        console.log(formData);
+        setFormData({
+            activity: "",
+            duration: 0,
+            calories: 0,
+            date: new Date()
+        });
     };
 
-    function onActivityChange(event: React.ChangeEvent<HTMLSelectElement>){
+    function onActivityChange(value: string){
         setFormData( ( prevData: ActivityForm ) => ({
             ...prevData,
-            activity: event.target.value
+            activity: value
         }));
     };
 
@@ -94,27 +114,55 @@ export default function UploadActivity(){
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="ActivityInput">Activity: </label>
-                <select id="ActivityInput" onChange={onActivityChange} name="activity">
-                    <option value="running">Running</option>
-                    <option value="weights">Weights</option>
-                    <option value="walking">Walking</option>
-                    <option value="biking">Biking</option>
-                </select>
+            <Dialog>
+                <DialogTrigger asChild>
+                    <Button className="text-white" variant="outline">Upload Exercise</Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                    <DialogTitle>Upload Exercise Activity</DialogTitle>
+                    </DialogHeader>
+                    <div className="grid gap-4 py-4">
 
-                <label htmlFor="DurationInput">Duration: </label>
-                <input id="DurationInput" name="duration" type="number" onChange={onChangeDuration}/>
+                        <form onSubmit={handleSubmit}>
+                            <Field>
+                                <FieldLabel>Exercise Activity: </FieldLabel>
+                                <Select value={formData.activity} onValueChange={onActivityChange} name="activity">
+                                    <SelectTrigger className="w-[180px]">
+                                        <SelectValue placeholder="Activity" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            <SelectItem value="running">Running</SelectItem>
+                                            <SelectItem value="weights">Weights</SelectItem>
+                                            <SelectItem value="walking">Walking</SelectItem>
+                                            <SelectItem value="biking">Biking</SelectItem>
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
+                            </Field>
 
-                <label htmlFor="CaloriesInput">Calories: </label>
-                <input id="CaloriesInput" name="Calories" type="number" onChange={onChangeCalories}/>
+                            <Field>
+                                <FieldLabel htmlFor="DurationInput">Duration (in minutes): </FieldLabel>
+                                <Input id="DurationInput" name="duration" type="number" onChange={onChangeDuration} value={formData.duration} />
+                            </Field>
 
-                <label htmlFor="DateInput">Date: </label>
-                <input id="DateInput" name="date" type="date" onChange={onDateChange} />
+                            <Field>
+                                <FieldLabel htmlFor="CaloriesInput">Calories: </FieldLabel>
+                                <Input id="CaloriesInput" name="Calories" type="number" onChange={onChangeCalories} value={formData.calories}/>
+                            </Field>
 
-                <input type="submit" value="Submit Activity" />
-            </form>
+                            <Field>
+                                <FieldLabel htmlFor="DateInput">Date: </FieldLabel>
+                                <Input id="DateInput" name="date" type="date" onChange={onDateChange} value={formData.date.toISOString().split("T")[0]}/>
+                            </Field>
 
+                            <Input className="my-3" type="submit" value="Submit Activity" />
+                        </form>
+                     
+                    </div>
+                </DialogContent>
+            </Dialog>
         </div>
     )
 }
