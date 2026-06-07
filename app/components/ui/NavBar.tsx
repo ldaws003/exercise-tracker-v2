@@ -26,9 +26,12 @@ export default async function NavBar(){
               <Link className="inline flex-auto hover:bg-emerald-950 p-1" href="/contact-us">Contact Us</Link>
               {
                   session?.user ? (
+                    <>
+                      <Link className="inline flex-auto hover:bg-emerald-950 p-1" href="/history">History</Link>
                       <div className="inline flex-auto hover:bg-emerald-950 p-1">
                         <SignOut />
                       </div>
+                    </>
                   ) : (
                   <Link className="inline flex-auto hover:bg-emerald-950 p-1" href="/api/auth/signin">
                       <button>Sign in</button>

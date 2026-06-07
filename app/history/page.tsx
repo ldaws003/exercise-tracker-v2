@@ -1,10 +1,23 @@
+"use client"
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-
+import { useRouter } from "next/navigation";
+import HistoryLoading from "../components/ui/HistoryLoading";
 
 //TODO: show the full raw history of exercise, and allow users to delete, have pagination
 export default function History(){
-    const [data, setData] = useState([]);
+    const router = useRouter();
+    const [data, setData] = useState<any[]>([]);
+    const [loaded, isLoaded] = useState(false);
     const [showData, setShowData] = useState([]);
+    const { data: session, status } = useSession();
+
+    
+    useEffect( () => {
+        if(status === "unauthenticated"){
+            router.push('/');
+        }
+    }, [status]);
 
      let dummy_activity_data: any = {
         data: [
@@ -23,7 +36,8 @@ export default function History(){
     }
 
     function DeleteActivity(event: any){
-        // TODO: delete the selected entry 
+        // TODO: delete the selected entry
+        event.preventDefault();
     }
 
     function Filter(history_data: any[], property: any, condition: any){
@@ -38,30 +52,29 @@ export default function History(){
         });
     }
 
-    useEffect( () => {d
-        const fetchData = async () => {
-            function sleep(ms: number){
-                return new Promise(resolve => setTimeout(resolve, ms));
-            }
+    useEffect( () => {
+        if(status === "authenticated"){
+            const fetchData = async () => {
+                function sleep(ms: number){
+                    return new Promise(resolve => setTimeout(resolve, ms));
+                }
 
-            // waits for 1000ms
-            await sleep(1000);
+                // waits for 1000ms
+                await sleep(1000);
 
-            return dummy_activity_data;
-        };
+                setData(dummy_activity_data.data);
+                isLoaded(true);
+            };
 
-        const result: any = fetchData().catch(console.error);
-
-
-        // show time and show calories burned
-        
-        setData(result.data);
-    }, []);
+            fetchData();
+        }
+    }, [status]);
 
 
     return (
         <div>
             {
+                loaded ? 
                 data.map((ele: any, i: number) => {
                     return (
                         <div key={`{ele.id}`} id={`{ele.id}`}>
@@ -73,6 +86,8 @@ export default function History(){
                         </div>
                     )
                 })
+                :
+                <HistoryLoading />
             }
         </div>
     )
