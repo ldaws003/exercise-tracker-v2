@@ -116,7 +116,7 @@ export default function UploadActivity(){
         <div>
             <Dialog>
                 <DialogTrigger asChild>
-                    <Button className="text-white" variant="outline">Upload Exercise</Button>
+                    <Button className="text-white hover:bg-emerald-900 bg-emerald-700" variant="outline">Upload Exercise</Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
