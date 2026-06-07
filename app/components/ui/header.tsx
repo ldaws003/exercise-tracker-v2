@@ -4,6 +4,7 @@ import NavBar from './NavBar';
 import { CiDumbbell } from "react-icons/ci";
 import Link from 'next/link';
 
+//TODO: fix the header not being sticky
 
 export default function Header(){
   return (
