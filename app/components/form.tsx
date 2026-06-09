@@ -9,10 +9,11 @@ const UserForm = () => {
        } else {
          // do something else
         }
- return (
-    <form onSubmit={onSubmit}>
-       <input type="text" placeholder="Your name"/>
-       <button type="submit" />
-    </form>
- )
-};
+  return (
+      <form onSubmit={onSubmit}>
+        <input type="text" placeholder="Your name"/>
+        <button type="submit" />
+      </form>
+  )
+  };
+}
