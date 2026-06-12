@@ -20,7 +20,7 @@ export default async function NavBar(){
     const session = await auth();
     console.log(session);
     return (
-        <nav className=" flex flex-nowrap sm:flex-wrap gap-x-3 items-center">
+        <nav className=" flex sm:flex-row sm:flex-nowrap flex-col gap-x-3 items-center">
               <Link className="inline flex-auto hover:bg-emerald-950 p-1" href="/">Home</Link>
               <Link className="inline flex-auto hover:bg-emerald-950 p-1" href="/about">About</Link>
               <Link className="inline flex-auto hover:bg-emerald-950 p-1" href="/contact-us">Contact Us</Link>

@@ -113,7 +113,7 @@ export default function UploadActivity(){
     }
 
     return (
-        <div>
+        <div className="self-center my-8">
             <Dialog>
                 <DialogTrigger asChild>
                     <Button className="text-white hover:bg-emerald-900 bg-emerald-700" variant="outline">Upload Exercise</Button>

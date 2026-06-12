@@ -67,6 +67,7 @@ export default function CaloriesChart(){
 
     const options: any = {
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
                 legend: {
                     position: 'top' as const,
@@ -85,7 +86,7 @@ export default function CaloriesChart(){
     };
     
     return (
-        <div className="w-1/3">
+        <div className="sm:w-1/3 w-full h-[250px]">
             {
                 loaded ?
                 <Line options={options} data={calData}/>
