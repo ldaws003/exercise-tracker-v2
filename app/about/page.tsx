@@ -1,8 +1,6 @@
-// TODO fill with actual text to be used
-
 export default function About(){
     return (
-        <div className="bg-slate-100 self-auto text-black self-start max-w-2xl mx-auto">
+        <div className="bg-slate-100 self-auto text-black self-start max-w-2xl mx-auto sm:my-0 my-7 px-3">
             <h1 className="text-5xl my-4">About Me</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis faucibus aliquam viverra. Cras eget ex nec ligula 
                 porttitor tincidunt. Duis rhoncus diam imperdiet odio ullamcorper, eu imperdiet libero scelerisque. Cras 

@@ -8,6 +8,7 @@ import Welcome from "./components/welcome";
 // TODO: decide which sql to use to fetch and load data
 // TODO: update readme
 // TODO: make responsive (for mobile)
+// TODO: replace lorem ipsum text
 // TODO: replace default nextjs login and signout pages
 // TODO: move src/auth.tsx into app folder
 // TODO: beautify dashboard and add functionality
