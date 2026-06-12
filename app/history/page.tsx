@@ -203,11 +203,11 @@ export default function History(){
             <h1 className="text-center">Workout History</h1>
             {
                 loaded ?
-                <div className="w-full"> 
+                <div className="w-full px-2"> 
                     {
                         showData.map((entry: any, i: number) => {
                             return (
-                                <Card className="w-1/3 my-1 mx-auto">
+                                <Card className="max-w-[500px] sm:w-1/3 my-2 mx-auto">
                                     <CardHeader>
                                         <CardAction>
                                             <Button variant="destructive" type="button" onClick={DeleteActivity}>Delete</Button>
