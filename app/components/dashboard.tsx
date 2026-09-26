@@ -14,7 +14,6 @@ export default function Dashboard(){
             <ActivitiesChart />
         </div>
 
-        {/*TODO add form to add an activity*/}
         <UploadActivity />
 
     </div>
