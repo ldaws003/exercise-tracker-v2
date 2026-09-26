@@ -1,6 +1,8 @@
 ## Exercise Tracker (WIP)
 Work in Progress
 
+This is a full stack app that uses google oauth for login authorization, and is built using React.js/Next.js and Tailwind. It uses a backend api using Flask that's hosted on another server. Link to that repo https://github.com/ldaws003/exercise-tracker-api. The database used is PostgreSQL. 
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
